@@ -176,12 +176,7 @@ with st.sidebar:
     st.markdown("*AI Pre-Validation Platform for UK Fashion SMEs*")
     st.divider()
 
-    api_key = st.text_input(
-        "Anthropic API Key",
-        type="password",
-        placeholder="sk-ant-...",
-        help="Your key is never stored — it only lives in this session"
-    )
+    api_key = st.secrets["ANTHROPIC_API_KEY"]
 
     st.divider()
     st.markdown("**About this tool**")
