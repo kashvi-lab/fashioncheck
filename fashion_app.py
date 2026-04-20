@@ -263,12 +263,21 @@ st.markdown("### Supplier & certifications")
 sup_col, cert_col = st.columns(2)
 
 with sup_col:
-    supplier_rating = st.slider(
+    supplier_options = {
+        "UK / local manufacturer": 10,
+        "Europe (EU or EEA)": 8,
+        "Turkey or North Africa": 6,
+        "South Asia — audited supplier (Bangladesh, India, Pakistan)": 4,
+        "South Asia — no audit or traceability": 2,
+        "High risk region — no data available": 1,
+    }
+    supplier_choice = st.selectbox(
         "Supplier region",
-        0, 10, 5,
-        help="10 = UK / local · 7 = EU · 4 = South Asia (audited) · 1 = high-risk, no audit"
+        options=list(supplier_options.keys()),
+        help="Select the region where your product is manufactured"
     )
-    st.caption("10 = UK/local  ·  7 = EU  ·  4 = South Asia audited  ·  1 = high risk")
+    supplier_rating = supplier_options[supplier_choice]
+    st.caption(f"Score assigned: {supplier_rating} / 10")
 
 with cert_col:
     selected_certs = st.multiselect(
